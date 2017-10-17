@@ -56,7 +56,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="CustomExecute\CustomContentEditor.cs" />
     <Compile Include="CustomExecute\CustomTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,6 +78,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <None Include="App_Config\Include\Sitecore.SharedSource.BucketCounter.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

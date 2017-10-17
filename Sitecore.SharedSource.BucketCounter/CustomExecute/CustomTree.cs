@@ -16,6 +16,12 @@ namespace Sitecore.SharedSource.BucketCounter.CustomExecute
 {
     public class CustomTree : Tree
     {
+
+        /// <summary>Renders the tree node.</summary>
+        /// <param name="output">The output.</param>
+        /// <param name="item">The item.</param>
+        /// <param name="inner">The inner.</param>
+        /// <param name="active">if set to <c>true</c> [active].</param>
         private void RenderTreeNode(HtmlTextWriter output, Item item, string inner, bool active)
         {
             Assert.ArgumentNotNull(output, "output");
@@ -44,7 +50,7 @@ namespace Sitecore.SharedSource.BucketCounter.CustomExecute
             output.Write('>');
             RenderTreeNodeIcon(output, item);
             output.Write(item.Appearance.DisplayName);
-            output.Write(" " + counterUtility.GetChildrenCounter(item) + " </span>");
+            output.Write(" <span style='color:#AAAAAA;font-style:italic;'>" + counterUtility.GetChildrenCounter(item) + "</span> </span>");
             output.Write("</a>");
             if (inner.Length > 0)
             {
@@ -55,6 +61,9 @@ namespace Sitecore.SharedSource.BucketCounter.CustomExecute
             output.Write("</div>");
         }
 
+        /// <summary>Gets the style.</summary>
+        /// <param name="item">The item.</param>
+        /// <returns>The style.</returns>
         private static string GetStyle(Item item)
         {
             Assert.ArgumentNotNull(item, "item");
@@ -69,12 +78,22 @@ namespace Sitecore.SharedSource.BucketCounter.CustomExecute
             return str;
         }
 
+        /// <summary>Gets the node ID.</summary>
+        /// <param name="shortID">The short ID.</param>
+        /// <returns></returns>
+        /// <contract>
+        ///   <requires name="shortID" condition="not empty" />
+        ///   <ensures condition="nullable" />
+        /// </contract>
         private string GetNodeID(string shortID)
         {
             Assert.ArgumentNotNullOrEmpty(shortID, "shortID");
             return ID + "_Node_" + shortID;
         }
 
+        /// <summary>Renders the tree node icon.</summary>
+        /// <param name="output">The output.</param>
+        /// <param name="item">The item.</param>
         private static void RenderTreeNodeIcon(HtmlTextWriter output, Item item)
         {
             Assert.ArgumentNotNull(output, "output");
@@ -82,6 +101,10 @@ namespace Sitecore.SharedSource.BucketCounter.CustomExecute
             output.Write(RenderIcon(item));
         }
 
+        /// <summary>Gets the name of the CSS class for the item.</summary>
+        /// <param name="item">The item.</param>
+        /// <param name="active">if set to <c>true</c> the item should be shown active</param>
+        /// <returns>Class name</returns>
         private static string GetClassName(Item item, bool active)
         {
             return !active
@@ -89,11 +112,23 @@ namespace Sitecore.SharedSource.BucketCounter.CustomExecute
                 : "scContentTreeNodeActive";
         }
 
+        /// <summary>Determines whether the item is UI static.</summary>
+        /// <param name="item">The item.</param>
+        /// <returns>
+        ///   <c>true</c> if the item is UI static; otherwise, <c>false</c>.
+        /// </returns>
         private static bool IsItemUIStatic(Item item)
         {
             return item[FieldIDs.UIStaticItem] == "1";
         }
 
+        /// <summary>Renders the icon.</summary>
+        /// <param name="item">The item.</param>
+        /// <returns>The icon.</returns>
+        /// <contract>
+        ///   <requires name="item" condition="not null" />
+        ///   <ensures condition="not null" />
+        /// </contract>
         private static string RenderIcon(Item item)
         {
             Assert.ArgumentNotNull(item, "item");
@@ -115,6 +150,17 @@ namespace Sitecore.SharedSource.BucketCounter.CustomExecute
             return imageBuilder.ToString();
         }
 
+        /// <summary>Renders the tree node glyph.</summary>
+        /// <param name="output">The output.</param>
+        /// <param name="id">The id.</param>
+        /// <param name="inner">The inner.</param>
+        /// <param name="item">The item.</param>
+        /// <contract>
+        ///   <requires name="output" condition="not null" />
+        ///   <requires name="id" condition="not empty" />
+        ///   <requires name="inner" condition="not null" />
+        ///   <requires name="item" condition="not null" />
+        /// </contract>
         private void RenderTreeNodeGlyph(HtmlTextWriter output, string id, string inner, Item item)
         {
             Assert.ArgumentNotNull(output, "output");
@@ -147,6 +193,13 @@ namespace Sitecore.SharedSource.BucketCounter.CustomExecute
             output.Write(imageBuilder.ToString());
         }
 
+        /// <summary>Renders the child nodes.</summary>
+        /// <param name="parent">The selected.</param>
+        /// <returns>The child nodes.</returns>
+        /// <contract>
+        /// 	<requires name="parent" condition="not null" />
+        /// 	<ensures condition="not null" />
+        /// </contract>
         public override string RenderChildNodes(ID parent)
         {
             var currentItem = FolderItem.Database.GetItem(parent, FolderItem.Language);
