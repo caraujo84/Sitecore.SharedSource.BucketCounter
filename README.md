@@ -30,8 +30,8 @@ The counter works just after installation for all buckets inside the /sitecore/c
 ```
  
 ## Screenshots
-New Experience with Buckets
+###New Experience with Buckets
 ![New Experience with Buckets](screenshots/bucketCounter.png?raw=true "Bucket Counter")
 
-New Experience with Bucket Counter For all Items
+###New Experience with Bucket Counter For all Items
 ![New Experience with Bucket Counter For all Items](screenshots/bucketCounter.png?raw=true "Bucket Counter For All")
