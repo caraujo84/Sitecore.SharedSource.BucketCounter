@@ -8,6 +8,7 @@ using Sitecore.Data.Managers;
 using Sitecore.Diagnostics;
 using Sitecore.Resources;
 using Sitecore.SecurityModel;
+using Sitecore.SharedSource.BucketCounter.Utilities;
 using Sitecore.Shell.Applications.ContentManager.Sidebars;
 using Sitecore.Text;
 
@@ -20,6 +21,7 @@ namespace Sitecore.SharedSource.BucketCounter.CustomExecute
             Assert.ArgumentNotNull(output, "output");
             Assert.ArgumentNotNull(item, "item");
             Assert.ArgumentNotNull(inner, "inner");
+            var counterUtility = new CounterUtility();
             var str = item.ID.ToShortID().ToString();
             output.Write("<div class=\"scContentTreeNode\">");
             RenderTreeNodeGlyph(output, str, inner, item);
@@ -42,7 +44,7 @@ namespace Sitecore.SharedSource.BucketCounter.CustomExecute
             output.Write('>');
             RenderTreeNodeIcon(output, item);
             output.Write(item.Appearance.DisplayName);
-            output.Write(" (HOOLA) </span>");
+            output.Write(" " + counterUtility.GetChildrenCounter(item) + " </span>");
             output.Write("</a>");
             if (inner.Length > 0)
             {

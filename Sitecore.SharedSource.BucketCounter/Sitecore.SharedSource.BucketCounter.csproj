@@ -36,6 +36,12 @@
     <Reference Include="Sitecore.Client">
       <HintPath>..\Libraries\Sitecore.Client.dll</HintPath>
     </Reference>
+    <Reference Include="Sitecore.ContentSearch">
+      <HintPath>..\Libraries\Sitecore.ContentSearch.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.ContentSearch.Linq">
+      <HintPath>..\Libraries\Sitecore.ContentSearch.Linq.dll</HintPath>
+    </Reference>
     <Reference Include="Sitecore.Kernel">
       <HintPath>..\Libraries\Sitecore.Kernel.dll</HintPath>
     </Reference>
@@ -61,6 +67,8 @@
     <Compile Include="sitecore\shell\Applications\Content Manager\Execute.aspx.designer.cs">
       <DependentUpon>Execute.aspx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\CounterUtility.cs" />
+    <Compile Include="Utilities\SearchUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="sitecore\shell\Applications\Content Manager\Default.aspx">
