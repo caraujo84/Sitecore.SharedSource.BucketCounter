@@ -9,7 +9,7 @@
 <asp:placeholder id="DocumentType" runat="server" />
 <html>
 <head runat="server">
-    <script type="text/JavaScript" src="/sitecore/shell/Controls/Lib/jQuery/jquery-1.10.2.min.js"></script>
+    <script type="text/JavaScript" src="/sitecore/shell/Controls/Lib/jQuery/jquery-1.12.4.min.js"></script>
     <script type="text/javascript">if (!window.$sc) $sc = jQuery.noConflict();</script>
     <title><%= HttpUtility.HtmlEncode(Translate.Text(WebUtil.GetQueryString("he", "Content Editor"))) %></title>
     <link rel="shortcut icon" href="/sitecore/images/favicon.ico" />

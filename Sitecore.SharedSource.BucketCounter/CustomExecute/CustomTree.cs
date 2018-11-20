@@ -49,7 +49,7 @@ namespace Sitecore.SharedSource.BucketCounter.CustomExecute
             output.Write(style);
             output.Write('>');
             RenderTreeNodeIcon(output, item);
-            output.Write(item.Appearance.DisplayName);
+            output.Write(item.GetUIDisplayName());
             output.Write(" <span style='color:#AAAAAA;font-style:italic;'>" + counterUtility.GetChildrenCounter(item) + "</span> </span>");
             output.Write("</a>");
             if (inner.Length > 0)
@@ -87,7 +87,7 @@ namespace Sitecore.SharedSource.BucketCounter.CustomExecute
         /// </contract>
         private string GetNodeID(string shortID)
         {
-            Assert.ArgumentNotNullOrEmpty(shortID, "shortID");
+            Assert.ArgumentNotNullOrEmpty(shortID, nameof(shortID));
             return ID + "_Node_" + shortID;
         }
 
@@ -96,8 +96,8 @@ namespace Sitecore.SharedSource.BucketCounter.CustomExecute
         /// <param name="item">The item.</param>
         private static void RenderTreeNodeIcon(HtmlTextWriter output, Item item)
         {
-            Assert.ArgumentNotNull(output, "output");
-            Assert.ArgumentNotNull(item, "item");
+            Assert.ArgumentNotNull((object)output, nameof(output));
+            Assert.ArgumentNotNull((object)item, nameof(item));
             output.Write(RenderIcon(item));
         }
 
@@ -131,7 +131,7 @@ namespace Sitecore.SharedSource.BucketCounter.CustomExecute
         /// </contract>
         private static string RenderIcon(Item item)
         {
-            Assert.ArgumentNotNull(item, "item");
+            Assert.ArgumentNotNull(item, nameof(item));
             var urlBuilder = new UrlBuilder(item.Appearance.Icon);
             if (item.Paths.IsMediaItem)
             {
@@ -163,10 +163,10 @@ namespace Sitecore.SharedSource.BucketCounter.CustomExecute
         /// </contract>
         private void RenderTreeNodeGlyph(HtmlTextWriter output, string id, string inner, Item item)
         {
-            Assert.ArgumentNotNull(output, "output");
-            Assert.ArgumentNotNullOrEmpty(id, "id");
-            Assert.ArgumentNotNull(inner, "inner");
-            Assert.ArgumentNotNull(item, "item");
+            Assert.ArgumentNotNull((object)output, nameof(output));
+            Assert.ArgumentNotNullOrEmpty(id, nameof(id));
+            Assert.ArgumentNotNull((object)inner, nameof(inner));
+            Assert.ArgumentNotNull((object)item, nameof(item));
             var imageBuilder = new ImageBuilder();
             if (inner.Length > 0)
             {
@@ -202,10 +202,10 @@ namespace Sitecore.SharedSource.BucketCounter.CustomExecute
         /// </contract>
         public override string RenderChildNodes(ID parent)
         {
+            Assert.ArgumentNotNull((object)parent, nameof(parent));
+            Assert.IsNotNull((object)this.FolderItem, "FolderItem");
             var currentItem = FolderItem.Database.GetItem(parent, FolderItem.Language);
-
             var output = new HtmlTextWriter(new StringWriter());
-
             if (currentItem != null)
             {
                 foreach (Item filterChild in FilterChildren(currentItem))
