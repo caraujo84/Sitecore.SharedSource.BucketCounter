@@ -8,7 +8,8 @@ By default only buckets will show the counter next to the item display name. The
 This module only applies to content inside the /sitecore/content/ tree, items in other trees are not considered.
 
 ## Sitecore Package
-[Download Package Sitecore 8.2](https://github.com/caraujo84/Sitecore.SharedSource.BucketCounter/raw/master/package/Bucket%20Counter%20Module%20Sitecore%208.2.zip)
+- [Download Package Sitecore 9.0.2](https://github.com/caraujo84/Sitecore.SharedSource.BucketCounter/blob/master/package/Bucket%20Counter%20Module%20Sitecore%209.0.2.zip)
+- [Download Package Sitecore 8.2](https://github.com/caraujo84/Sitecore.SharedSource.BucketCounter/raw/master/package/Bucket%20Counter%20Module%20Sitecore%208.2.zip)
 
 This package contains the following files
  - /sitecore/shell/Applications/Content Manager/Default.aspx
